@@ -1,0 +1,27 @@
+body{
+	background-color:#ffffff;
+}
+
+#emojiTable td {
+	height:9vh;
+	background-size:10vh;
+	padding:1.5vh 7vh;
+	background-repeat:no-repeat;
+}
+
+#emojiTable .inactive {
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+}
+
+#emojiTable .overlay{
+	position:absolute;
+	z-index:1000;
+	width:9vh;
+	height:9vh;
+	margin:-5.5vh 7vh 1.5vh -6.5vh;
+}
+
+#emojiTable .active .overlay:hover{
+	background-color:rgba(255,255,255,0.6);
+}
