@@ -1,6 +1,6 @@
 var EMOJIS = 1037;
 var ROWS = 5;
-activeTags = [1,462];
+activeTags = [1,8,462];
 
 $(document).ready(function(){
 	createEmojiTable();
