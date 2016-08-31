@@ -2,9 +2,60 @@ body{
 	background-color:#ffffff;
 }
 
+
+
+#feed p {
+	clear:both;
+	width:100vw;
+	text-align:center;
+	color:#444444;
+	font-family: sans-serif;
+	font-size:1.5vh;
+}
+
+#feed .sentMessage {
+	float:right;
+	background:lightblue;
+	width:70px;
+	height:20px;
+	border-radius:15px;
+	padding:5px 10px;
+}
+
+
+
+#score {
+	float:left;
+	clear:both;
+	width:250px;
+	height:4vh;
+	background-color: #bbbbbb;
+	border-radius:4vh;
+	padding:15px 20px;
+}
+
+#score p {
+	color:black;
+	font-size:1.8vh;
+	font-family:sans-serif;
+	margin-top:-5px;
+}
+
+
+
+#message {
+	clear:both;
+}
+
+
+
+
+
+
+
 #emojiTable {
 	visibility: hidden;
-	position:fixed;
+	position:absolute;
 	bottom: 0px;
 }
 
