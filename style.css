@@ -2,6 +2,12 @@ body{
 	background-color:#ffffff;
 }
 
+#emojiTable {
+	visibility: hidden;
+	position:fixed;
+	bottom: 0px;
+}
+
 #emojiTable td {
 	height:9vh;
 	background-size:10vh;

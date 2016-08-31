@@ -5,6 +5,7 @@ activeTags = [1,462];
 $(document).ready(function(){
 	createEmojiTable();
 	createEmojiImages();
+	$("#emojiTable").css("visibility","visible");
 });
 
 function createEmojiTable(){
