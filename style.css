@@ -2,6 +2,12 @@ body{
 	background-color:#ffffff;
 }
 
+#header {
+	width:100vw;
+	height:30vh;
+	position:fixed;
+	overflow: scroll;
+}
 
 
 #feed p {
