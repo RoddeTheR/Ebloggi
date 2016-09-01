@@ -1,6 +1,7 @@
 var EMOJIS = 1037;
 var ROWS = 5;
 activeTags = [1,8,462];
+colBreaks = [204,351,418,475,590,768,1037];
 
 $(document).ready(function(){
 	createEmojiTable();
@@ -9,21 +10,36 @@ $(document).ready(function(){
 });
 
 function createEmojiTable(){
-	for(row = 1; row <= ROWS; row++){
-		var str = "<tr>";
-		for(col = 1; col <= Math.ceil(EMOJIS/ROWS); col++){
-			var id = (col-1)*ROWS + row;
-			str += "<td id='emoji" + id.toString() + "' class=";
-			if (isActive(id)) {
+	// Create rows
+	for (row = 1; row <= ROWS; row++){
+		$("#emojiTable").append("<tr id='row" + row.toString() + "'></tr>");
+	}
+
+	// Create columns
+	var emojiTag = 1
+	while (emojiTag <= EMOJIS) {
+		for (row = 1; row <= ROWS; row++){
+			str = "<td id='emoji" + emojiTag.toString() + "' class=";
+			if (isActive(emojiTag)) {
 				str += "'active'";
 			} else {
 				str += "'inactive'";
 			}
 			str += "><div class='overlay'></div></td>";
-		};
-		str += "</tr>";
-		$("#emojiTable").append(str)
-	};	
+
+			$("#emojiTable #row" + row.toString()).append(str);
+
+			if ($.inArray(emojiTag, colBreaks) >= 0){
+				row++;
+				while (row <= ROWS){
+					$("#emojiTable #row" + row.toString()).append("<td></td>");
+					row++;
+				}
+			}
+
+			emojiTag++;
+		}
+	}
 };
 
 function createEmojiImages(){
