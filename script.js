@@ -1,6 +1,6 @@
 var EMOJIS = 1037;
 var ROWS = 5;
-activeTags = [1,8,462];
+activeTags = [1,8,70,462];
 colBreaks = [204,351,418,475,590,768,1037];
 
 $(document).ready(function(){
