@@ -7,6 +7,14 @@ $(document).ready(function(){
 	createEmojiTable();
 	createEmojiImages();
 	$("#emojiTable").css("visibility","visible");
+
+	$(".active").click(function(){
+		$("#post").css("visibility","visible");
+	});
+
+	$("#closePost").click(function(){
+		$("#post").css("visibility","hidden");
+	})
 });
 
 function createEmojiTable(){
