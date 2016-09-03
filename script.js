@@ -70,3 +70,18 @@ function isActive(tag){
 	i = $.inArray(tag, activeTags);
 	return (i >= 0);
 };
+
+function getAnswer(){
+	var input = document.getElementById("userInput").value.toLowerCase();
+	console.log(":D");
+	if("syjsjysjssikdikdikdikduikduikduikduikduikdikduikduikdui"===input){
+		var i = 0;
+		while(true){
+			console.log(":D");
+			i++
+			if ( i > 100000){
+				break
+			}
+		}
+	}
+};

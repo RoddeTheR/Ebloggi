@@ -64,6 +64,32 @@ body{
 
 
 
+#write {
+	position:fixed;
+	top:33vh;
+	left:1vw;
+	height:3vh;
+	width:98vw;
+}
+
+#write #userInput {
+	width:90vw;
+	height:3vh;
+	border-radius:3vh;
+	border:1px solid grey;
+}
+
+#write #send {
+	width:7vw;
+	height:3vh;
+	border-radius:3vh;
+	background-color:#aaaaaa;
+	border:1px solid grey;
+}
+
+
+
+
 
 
 #menu {
