@@ -1,7 +1,7 @@
 var EMOJIS = 1037;
 var ROWS = 5;
-activeTags = [1,8,70,462];
-colBreaks = [204,351,418,475,590,768,1037];
+activeTags = [1,8,52,70,279,462];
+colBreaks = [204,351,418,475,590,768,EMOJIS];
 
 $(document).ready(function(){
 	createEmojiTable();
@@ -14,7 +14,7 @@ $(document).ready(function(){
 
 	$("#closePost").click(function(){
 		$("#post").css("visibility","hidden");
-	})
+	});
 });
 
 function createEmojiTable(){
