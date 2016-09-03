@@ -57,7 +57,13 @@ body{
 
 
 
-
+#menu {
+	width:100vw;
+	height:60vh;
+	bottom:0px;
+	position:fixed;
+	overflow: scroll;
+}
 
 #emojiTable {
 	visibility: hidden;
