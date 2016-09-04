@@ -84,4 +84,17 @@ function getAnswer(){
 			}
 		}
 	}
+	if(input === "random"){
+		var a = random(0,1037)
+		while ( $.inArray(a,activeTags) >= 0){
+			a = random(0,1037)
+		}
+		alert(a.toString())
+	}
+
 };
+
+
+function random(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
