@@ -15,6 +15,14 @@ $(document).ready(function(){
 	$("#closePost").click(function(){
 		$("#post").css("visibility","hidden");
 	});
+
+	$("#post").click(function(){
+		$("#post").css("visibility","hidden");
+	})
+
+	$("#postwindow").click(function(){
+		event.stopPropagation();
+	})
 });
 
 function createEmojiTable(){
