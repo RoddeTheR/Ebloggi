@@ -1,0 +1,7 @@
+Taggnummer
+Datum 	åååå-mm-dd
+Vikt
+Etta 	M S eller A
+Tvåa
+Trea
+Text
