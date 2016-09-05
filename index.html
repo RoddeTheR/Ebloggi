@@ -29,6 +29,14 @@
 	</head>
 	<body>
 		<script src="jquery.js"></script>
+		<script>
+		$(document).ready(function(){
+			if (Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') <= 0){
+				console.log("Jag funkar!!!");
+				$("#menu").css("position","fixed");
+			}
+		});
+		</script>
 		<script src="script.js"></script>
 
 		<div id="header">
@@ -111,7 +119,7 @@
 		<div id="post">
 			<div id="closePost"><div class="overlay"></div></div>
 			<div id="postwindow">
-				
+
 			</div>
 		</div>
 	</body>
