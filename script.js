@@ -1,6 +1,5 @@
 var EMOJIS = 1037;
 var ROWS = 5;
-//activeTags = [1,8,52,70,279,462,711];
 activeTags = [];
 colBreaks = [204,351,418,475,590,768,EMOJIS];
 
@@ -20,8 +19,8 @@ $(document).ready(function(){
 	makePost(66,"2016-09-06",2,0,1,2,"");
 	makePost(184,"2016-09-07",2,0,1,1,"");
 	makePost(182,"2016-09-08",0,2,1,1,"");
+
 	makeScoreMessage();
-	console.log(activeTags);
 
 	createEmojiTable();
 	createEmojiImages();
@@ -146,7 +145,7 @@ function makeFeedMessage(tag, dateStr){
 function makeScoreMessage(){
 	var messageStr = "<p>Emojis: " + activeTags.length + "</p>";
 
-	var iosStr = "iOS: " + i_score.toString();
+	var iosStr = "iOS: " + ios_score.toString();
 	var msgStr = "Messenger: " + msg_score.toString();
 	var samsStr = "Samsung: " + sams_score.toString();
 
