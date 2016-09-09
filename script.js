@@ -23,6 +23,9 @@ $(document).ready(function(){
 
 	makeScoreMessage();
 
+	var headerHeight = document.getElementById("header").scrollHeight;
+	$("#header").scrollTop(headerHeight);
+
 	createEmojiTable();
 	createEmojiImages();
 
