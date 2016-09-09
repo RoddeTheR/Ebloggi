@@ -1,11 +1,31 @@
 var EMOJIS = 1037;
 var ROWS = 5;
-activeTags = [1,8,52,70,279,462,711];
+//activeTags = [1,8,52,70,279,462,711];
+activeTags = [];
 colBreaks = [204,351,418,475,590,768,EMOJIS];
 
+var ios_score = 0;
+var msg_score = 0;
+var sams_score = 0;
+
 $(document).ready(function(){
+	makePost(1,"2016-08-29",0,2,1,2,"");
+	makePost(462,"2016-08-30",2,1,0,1,"");
+	makePost(8,"2016-08-31",1,2,0,2,"");
+	makePost(70,"2016-09-01",2,0,1,2,"");
+	makePost(279,"2016-09-02",2,1,0,2,"");
+	makePost(52,"2016-09-03",0,1,2,2,"");
+	makePost(711,"2016-09-04",2,1,0,1,"");
+	makePost(69,"2016-09-05",1,2,0,2,"");
+	makePost(66,"2016-09-06",2,0,1,2,"");
+	makePost(184,"2016-09-07",2,0,1,1,"");
+	makePost(182,"2016-09-08",0,2,1,1,"");
+	makeScoreMessage();
+	console.log(activeTags);
+
 	createEmojiTable();
 	createEmojiImages();
+
 	$("#emojiTable").css("visibility","visible");
 
 	$(".active").click(function(){
@@ -23,20 +43,6 @@ $(document).ready(function(){
 	$("#postwindow").click(function(){
 		event.stopPropagation();
 	})
-
-
-	makeFeedMessage(1,"2016-08-29");
-	makeFeedMessage(462,"2016-08-30");
-	makeFeedMessage(8,"2016-08-31");
-	makeFeedMessage(70,"2016-09-01");
-	makeFeedMessage(279,"2016-09-02");
-	makeFeedMessage(52,"2016-09-03");
-	makeFeedMessage(711,"2016-09-04");
-	makeFeedMessage(69,"2016-09-05");
-	makeFeedMessage(66,"2016-09-06");
-	makeFeedMessage(184,"2016-09-07");
-	makeFeedMessage(182,"2016-09-08");
-
 });
 
 function createEmojiTable(){
@@ -75,16 +81,8 @@ function createEmojiTable(){
 function createEmojiImages(){
 	for(i=1; i<=EMOJIS; i++){
 		var id = "#emoji" + i.toString();
-		var imageid = "";
-		if (i < 10) {
-			imageid = "00" + i.toString();
-		} else if (i < 100) {
-			imageid = "0" + i.toString();
-		} else {
-			imageid = i.toString();
-		}
 
-		$(id).css("background-image","url('Images/iOS/" + imageid + ".png')");
+		$(id).css("background-image","url('Images/iOS/" + i.toString() + ".png')");
 	};
 };
 
@@ -123,6 +121,16 @@ function random(min, max) {
 }
 
 
+
+function makePost(tag, dateStr, iosScore, msgScore, samsScore, weight, text){
+	activeTags.push(tag);
+	ios_score += iosScore * weight;
+	msg_score += msgScore * weight;
+	sams_score += samsScore * weight;
+
+	makeFeedMessage(tag, dateStr);
+}
+
 function makeFeedMessage(tag, dateStr){
 	var messageStr = "<div class='post'><p>" + dateStr + "</p><div class='sentMessage'>";
 
@@ -135,8 +143,13 @@ function makeFeedMessage(tag, dateStr){
 	$("#feed").append(messageStr);
 }
 
+function makeScoreMessage(){
+	var messageStr = "<p>Emojis: " + activeTags.length + "</p>";
 
-function makePost(tag, dateStr, iosRank, msgRank, ssRank, text, weight){
-	activeTags.push(tag)
-	makeFeedMessage(tag, dateStr);
+	var iosStr = "iOS: " + i_score.toString();
+	var msgStr = "Messenger: " + msg_score.toString();
+	var samsStr = "Samsung: " + sams_score.toString();
+
+	messageStr += "<p>" + iosStr + "&nbsp&nbsp&nbsp" + msgStr + "&nbsp&nbsp&nbsp" + samsStr + "</p>"
+	$("#score").append(messageStr);
 }
