@@ -19,6 +19,7 @@ $(document).ready(function(){
 	makePost(66,"2016-09-06",2,0,1,2,"");
 	makePost(184,"2016-09-07",2,0,1,1,"");
 	makePost(182,"2016-09-08",0,2,1,1,"");
+	makePost(492,"2016-09-09",0,1,2,1,"");
 
 	makeScoreMessage();
 
