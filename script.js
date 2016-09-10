@@ -121,10 +121,13 @@ function getAnswer(){
 			break
 
 		case "ios":
+		case "apple":
 			updateEmojiSrc("iOS")
 			break
 
 		case "messenger":
+		case "facebook":
+		case "fbm":
 			updateEmojiSrc("Messenger")
 			break
 
