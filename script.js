@@ -1,5 +1,7 @@
 var EMOJIS = 1037;
 var ROWS = 5;
+var emojiSrc = "iOS";
+
 activeTags = [];
 colBreaks = [204,351,418,475,590,768,EMOJIS];
 
@@ -85,7 +87,7 @@ function createEmojiImages(){
 	for(i=1; i<=EMOJIS; i++){
 		var id = "#emoji" + i.toString();
 
-		$(id).css("background-image","url('Images/iOS/" + i.toString() + ".png')");
+		$(id).css("background-image","url('Images/" + emojiSrc + "/" + i.toString() + ".png')");
 	};
 };
 
@@ -108,6 +110,7 @@ function getAnswer(){
 					break
 				}
 			}
+			break
 		
 		case "random":
 			var a = random(0,1037)
@@ -115,6 +118,23 @@ function getAnswer(){
 				a = random(0,1037)
 			}
 			alert(a.toString())
+			break
+
+		case "ios":
+			updateEmojiSrc("iOS")
+			break
+
+		case "messenger":
+			updateEmojiSrc("Messenger")
+			break
+
+		case "samsung":
+			updateEmojiSrc("Blahsung")
+			break
+
+		case "blahsung":
+			updateEmojiSrc("Blahsung")
+			break
 	}
 
 };
@@ -123,6 +143,14 @@ function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function updateEmojiSrc(src){
+	emojiSrc = src;
+	createEmojiImages();
+	$("#feed img").each(function(){
+		var str = "Images/" + src + $(this).attr("src").match(/\/\d+\.png$/)
+		$(this).attr("src",str);
+	})
+}
 
 
 function makePost(tag, dateStr, iosScore, msgScore, samsScore, weight, text){
@@ -139,7 +167,7 @@ function makeFeedMessage(tag, dateStr){
 
 	var randomNum = random(1,10);
 	for (i=0; i<randomNum; i++){
-		messageStr += "<img src='Images/iOS/" + tag.toString() + ".png'>"
+		messageStr += "<img src='Images/" + emojiSrc + "/" + tag.toString() + ".png'>"
 	}
 	messageStr += "</div></div>";
 
