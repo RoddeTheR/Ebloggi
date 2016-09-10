@@ -129,9 +129,6 @@ function getAnswer(){
 			break
 
 		case "samsung":
-			updateEmojiSrc("Blahsung")
-			break
-
 		case "blahsung":
 			updateEmojiSrc("Blahsung")
 			break
