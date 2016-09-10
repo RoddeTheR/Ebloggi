@@ -40,10 +40,12 @@ $(document).ready(function(){
 
 	$("#closePost").click(function(){
 		$("#post").css("visibility","hidden");
+		$("#tempDiv").remove();
 	});
 
 	$("#post").click(function(){
 		$("#post").css("visibility","hidden");
+		$("#tempDiv").remove();
 	})
 
 	$("#postwindow").click(function(){
@@ -100,6 +102,27 @@ function isActive(tag){
 function getAnswer(){
 	var input = document.getElementById("userInput").value.toLowerCase();
 	console.log(":D");
+
+	if (/^\d+$/.test(input)){
+		var inputVal = parseInt(input);
+		if (inputVal > 0 && inputVal <= EMOJIS) {
+			$("#postwindow").append("<div id='tempDiv'><img class='inputImg' src='Images/iOS/"+inputVal+".png'><img class='inputImg' src='Images/Messenger/"+inputVal+".png'><img class='inputImg' src='Images/Blahsung/"+inputVal+".png'></div>");
+			$("#postwindow .inputImg").css({
+				"width":"24vmin",
+				"height":"24vmin",
+				"margin":"1vmin"
+			});
+			$("#tempDiv").css({
+    			"position":"absolute",
+    			"top":"50%",
+    			"left":"50%",
+    			"margin-right":"-50%",
+			    "transform":"translate(-50%, -50%)"
+			});
+			$("#post").css("visibility","visible");
+		}
+		return
+	}
 
 	switch (input) {
 		case "syjsjysjssikdikdikdikduikduikduikduikduikdikduikduikdui":
