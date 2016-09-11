@@ -1,6 +1,7 @@
 var EMOJIS = 1037;
 var ROWS = 5;
 var emojiSrc = "iOS";
+var spammable = false;
 
 activeTags = [];
 colBreaks = [204,351,418,475,590,768,EMOJIS];
@@ -106,20 +107,22 @@ function getAnswer(){
 	if (/^\d+$/.test(input)){
 		var inputVal = parseInt(input);
 		if (inputVal > 0 && inputVal <= EMOJIS) {
-			$("#postwindow").append("<div id='tempDiv'><img class='inputImg' src='Images/iOS/"+inputVal+".png'><img class='inputImg' src='Images/Messenger/"+inputVal+".png'><img class='inputImg' src='Images/Blahsung/"+inputVal+".png'></div>");
-			$("#postwindow .inputImg").css({
-				"width":"24vmin",
-				"height":"24vmin",
-				"margin":"1vmin"
-			});
-			$("#tempDiv").css({
-    			"position":"absolute",
-    			"top":"50%",
-    			"left":"50%",
-    			"margin-right":"-50%",
-			    "transform":"translate(-50%, -50%)"
-			});
-			$("#post").css("visibility","visible");
+			if (spammable || !($("#tempDiv").length)){
+				$("#postwindow").append("<div id='tempDiv'><img class='inputImg' src='Images/iOS/"+inputVal+".png'><img class='inputImg' src='Images/Messenger/"+inputVal+".png'><img class='inputImg' src='Images/Blahsung/"+inputVal+".png'></div>");
+				$("#postwindow .inputImg").css({
+					"width":"24vmin",
+					"height":"24vmin",
+					"margin":"1vmin"
+				});
+				$("#tempDiv").css({
+	    			"position":"absolute",
+	    			"top":"50%",
+	    			"left":"50%",
+	    			"margin-right":"-50%",
+				    "transform":"translate(-50%, -50%)"
+				});
+				$("#post").css("visibility","visible");
+			}
 		}
 		return
 	}
@@ -134,6 +137,10 @@ function getAnswer(){
 					break
 				}
 			}
+			break
+
+		case "spam":
+			spammable = true;
 			break
 		
 		case "random":
