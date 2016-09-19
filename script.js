@@ -108,7 +108,6 @@ function createEmojiTable(){
 function createEmojiImages(){
 	for(i=1; i<=EMOJIS; i++){
 		var id = "#emoji" + i.toString();
-
 		$(id).css("background-image","url('Images/" + emojiSrc + "/" + i.toString() + ".png')");
 	};
 };
@@ -119,14 +118,19 @@ function isActive(tag){
 };
 
 function getAnswer(){
-	var input = document.getElementById("userInput").value.toLowerCase();
+	var inputField = document.getElementById("userInput")
+	var input = inputField.value.toLowerCase();
+	inputField.value = "";
 	console.log(":D");
 
 	if (/^\d+$/.test(input)){
 		var inputVal = parseInt(input);
 		if (inputVal > 0 && inputVal <= EMOJIS) {
 			if (spammable || !($("#tempDiv").length)){
-				$("#postwindow").append("<div id='tempDiv'><img class='inputImg' src='Images/iOS/"+inputVal+".png'><img class='inputImg' src='Images/Messenger/"+inputVal+".png'><img class='inputImg' src='Images/Blahsung/"+inputVal+".png'></div>");
+				$("#postwindow").append("<div id='tempDiv'>"+
+					"<img class='inputImg' src='Images/iOS/"+inputVal+".png'>" +
+					"<img class='inputImg' src='Images/Messenger/"+inputVal+".png'>" +
+					"<img class='inputImg' src='Images/Blahsung/"+inputVal+".png'></div>");
 				$("#postwindow .inputImg").css({
 					"width":"24vmin",
 					"height":"24vmin",
