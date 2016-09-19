@@ -55,8 +55,8 @@ $(document).ready(function(){
 });
 
 function openPost(button){
-	var pageH = $("body").height();  // Buggelicious
-	var pageW = $("body").width();
+	var pageH = $(window).height();
+	var pageW = $(window).width();
 
 	if (pageW < pageH) {
 		$("#post").css({
