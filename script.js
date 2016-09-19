@@ -47,6 +47,7 @@ $(document).ready(function(){
 
 	$("#post").click(function(){
 		$("#post").css("visibility","hidden");
+		$("#postHeader").empty();
 		$("#tempDiv").remove();
 	})
 
@@ -56,6 +57,11 @@ $(document).ready(function(){
 });
 
 function openPost(tag){
+	var headerStr = "<img src='Images/iOS/"+tag+".png'/>" +
+					"<img src='Images/Messenger/"+tag+".png'/>" +
+					"<img src='Images/Blahsung/"+tag+".png'/>";
+	$("#postHeader").append(headerStr);
+
 	var pageH = $(window).height();
 	var pageW = $(window).width();
 	if (pageW < pageH) {
