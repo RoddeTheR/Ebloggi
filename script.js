@@ -57,7 +57,6 @@ $(document).ready(function(){
 function openPost(button){
 	var pageH = $(window).height();
 	var pageW = $(window).width();
-
 	if (pageW < pageH) {
 		$("#post").css({
 
@@ -67,6 +66,8 @@ function openPost(button){
 
 		});
 	}
+
+	var id = button.id.substring(5);
 
 	$("#post").css("visibility","visible");
 }
