@@ -36,7 +36,8 @@ $(document).ready(function(){
 	$("#emojiTable").css("visibility","visible");
 
 	$(".active").click(function(){
-		openPost(this);
+		var tag = this.id.substring(5);
+		openPost(tag);
 	});
 
 	$("#closePost").click(function(){
@@ -54,20 +55,18 @@ $(document).ready(function(){
 	})
 });
 
-function openPost(button){
+function openPost(tag){
 	var pageH = $(window).height();
 	var pageW = $(window).width();
 	if (pageW < pageH) {
-		$("#post").css({
-
-		});
+		$("#postHeader").css({"display":"block","width":"90%","height":"40%","float":"top"});
+		$("#postHeader img").css({"height":"auto","width":"32%"});
+		$("#postContent").css({"width":"90%","height":"40%","float":"bottom"});
 	} else {
-		$("#post").css({
-
-		});
+		$("#postHeader").css({"display":"inline","width":"40%","height":"90%","float":"left"});
+		$("#postHeader img").css({"height":"32%","width":"auto"});
+		$("#postContent").css({"width":"40%","height":"90%","float":"right"});
 	}
-
-	var id = button.id.substring(5);
 
 	$("#post").css("visibility","visible");
 }
