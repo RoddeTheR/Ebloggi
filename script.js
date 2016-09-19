@@ -36,7 +36,7 @@ $(document).ready(function(){
 	$("#emojiTable").css("visibility","visible");
 
 	$(".active").click(function(){
-		$("#post").css("visibility","visible");
+		openPost(this);
 	});
 
 	$("#closePost").click(function(){
@@ -53,6 +53,23 @@ $(document).ready(function(){
 		event.stopPropagation();
 	})
 });
+
+function openPost(button){
+	var pageH = $("body").height();  // Buggelicious
+	var pageW = $("body").width();
+
+	if (pageW < pageH) {
+		$("#post").css({
+
+		});
+	} else {
+		$("#post").css({
+
+		});
+	}
+
+	$("#post").css("visibility","visible");
+}
 
 function createEmojiTable(){
 	// Create rows
