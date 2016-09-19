@@ -193,3 +193,31 @@ body{
 	background-color:rgba(255,255,255,0.4);
 	cursor: pointer;
 }
+
+#postHeader{
+    display: block;/*inline*/
+    vertical-align: middle;
+    text-align: center;
+    padding: 5%;
+    width: 90%;/*40%*/
+    height:40%;/*90%*/
+    float:top;/*left*/
+
+}
+#postHeader img {
+  height:auto;/*32%*/
+  width:32%; /*auto*/
+
+}
+
+#postContent {
+	width: 90%;/*40%*/
+	height:40%;/*90%*/
+	font-size:1.4em;
+	text-align: center;
+	font-family:sans-serif;
+	float:bottom;/*right*/
+	padding:5%;
+	vertical-align: middle;
+	display: inline-block;
+}
