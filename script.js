@@ -246,7 +246,7 @@ function makeScoreMessage(){
 	$("#score").append(messageStr);
 }
 
-setTxt = function (postN){
+function setTxt(postN){
 	$("#date").replaceWith("<p id=\"date\">  </p>");
 	$("#description").replaceWith("<p id=\"description\"> </p>");
 	$("#weight").replaceWith("<p id=\"weight\"> </p>");
