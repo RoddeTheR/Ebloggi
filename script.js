@@ -57,9 +57,12 @@ $(document).ready(function(){
 });
 
 function openPost(tag){
+	setTxt(tag);
+
 	var headerStr = "<img src='Images/iOS/"+tag+".png'/>" +
 					"<img src='Images/Messenger/"+tag+".png'/>" +
 					"<img src='Images/Blahsung/"+tag+".png'/>";
+
 	$("#postHeader").append(headerStr);
 
 	var pageH = $(window).height();
@@ -241,4 +244,20 @@ function makeScoreMessage(){
 
 	messageStr += "<p>" + iosStr + "&nbsp&nbsp&nbsp" + msgStr + "&nbsp&nbsp&nbsp" + samsStr + "</p>"
 	$("#score").append(messageStr);
+}
+
+setTxt = function (postN){
+	$("#date").replaceWith("<p id=\"date\">  </p>");
+	$("#description").replaceWith("<p id=\"description\"> </p>");
+	$("#weight").replaceWith("<p id=\"weight\"> </p>");
+  $.ajax({
+    url:"Posts/"+ postN + ".txt",
+    success: function (data){
+    	facts = data.split('\n');
+    	$("#date").replaceWith("<p id=\"date\">" + facts[1]+ "</p>");
+		$("#description").replaceWith("<p id=\"description\">" + facts[6] + "</p>");
+		$("#weight").replaceWith("<p id=\"weight\">" + "Vikt: " +facts[2]+ "</p>");
+		//$("#score").replaceWith(sscore);
+    }
+  });
 }
