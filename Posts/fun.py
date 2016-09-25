@@ -15,19 +15,9 @@ for fil in dirs:
 			#print(fil)
 			t = open(fil,'r').read().split('\n')
 			#judgea inte mina 6 if satser
-			if   t[3] == "M" :
-				messc = messc +  2 * int(t[2])
-			elif t[3] == "A" :
-				iOSsc = iOSsc +  2 * int(t[2])
-			else :
-				samsc = samsc +  2 * int(t[2])
-
-			if   t[4] == "M" :
-				messc = messc + int(t[2])
-			elif t[4] == "A" :
-				iOSsc = iOSsc + int(t[2])
-			else :
-				samsc = samsc + int(t[2])
+			iOSsc = iOSsc +  int(t[3]) * int(t[2])
+			messc = messc +  int(t[4]) * int(t[2])
+			samsc = samsc +  int(t[5]) * int(t[2])
 
 			activeTags += t[0] + ","
 
