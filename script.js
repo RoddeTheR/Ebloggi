@@ -14,11 +14,6 @@ $(document).ready(function(){
 	$("body").css("visibility","hidden");
 	readScoreFile();
 
-	$(".active").click(function(){
-		var tag = this.id.substring(5);
-		openPost(tag);
-	});
-
 	$("#closePost").click(function(){
 		$("#post").css("visibility","hidden");
 		$("#tempDiv").remove();
@@ -44,8 +39,8 @@ function readScoreFile(){
     		facts = data.split('\n');
     		activeTags = facts[0].slice(0, -1).split(',').map(Number);
     		ios_score = parseInt(facts[1]);
-    		msg_score = parseInt(facts[2]);
-    		sams_score = parseInt(facts[3]);
+    		msg_score = parseInt(facts[3]);
+    		sams_score = parseInt(facts[2]);
 
     		initPage();
        	}
@@ -62,6 +57,11 @@ function initPage(){
 	createEmojiImages();
 	$("#emojiTable").css("visibility","visible");
 	$("body").css("visibility","visible");
+
+	$(".active").click(function(){
+		var tag = this.id.substring(5);
+		openPost(tag);
+	});
 }
 
 
