@@ -11,17 +11,8 @@ var msg_score = 0;
 var sams_score = 0;
 
 $(document).ready(function(){
+	$("body").css("visibility","hidden");
 	readScoreFile();
-	makeScoreMessage();
-	// makeFeed();
-
-	var headerHeight = document.getElementById("header").scrollHeight;
-	$("#header").scrollTop(headerHeight);
-
-	createEmojiTable();
-	createEmojiImages();
-
-	$("#emojiTable").css("visibility","visible");
 
 	$(".active").click(function(){
 		var tag = this.id.substring(5);
@@ -51,15 +42,27 @@ function readScoreFile(){
     	url:"Posts/output.txt",
     	success: function (data){
     		facts = data.split('\n');
-    		activeTags = facts[0].slice(0, -1).split(',');
+    		activeTags = facts[0].slice(0, -1).split(',').map(Number);
     		ios_score = parseInt(facts[1]);
     		msg_score = parseInt(facts[2]);
     		sams_score = parseInt(facts[3]);
+
+    		initPage();
        	}
     });
 }
 
+function initPage(){
+	// makeFeed();
+	makeScoreMessage();
+	var headerHeight = document.getElementById("header").scrollHeight;
+	$("#header").scrollTop(headerHeight);
 
+	createEmojiTable();
+	createEmojiImages();
+	$("#emojiTable").css("visibility","visible");
+	$("body").css("visibility","visible");
+}
 
 
 
