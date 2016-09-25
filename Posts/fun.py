@@ -32,7 +32,7 @@ for fil in dirs:
 
 			#print(t)
 
-result ="Emojis:"+str(total)+ "\n" + "iOS:"+str(iOSsc)+" Samsung:"+str(samsc)+" Messenger:" +str(messc) + "\n"
+result = str(total)+ "\n" + str(iOSsc) + "\n" + str(samsc)+ "\n" + str(messc) + "\n"
 print(result)
 
 ff = open('output.txt','w')

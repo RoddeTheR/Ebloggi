@@ -1,2 +1,4 @@
-Emojis:18
-iOS:37 Samsung:23 Messenger:39
+18
+37
+23
+39

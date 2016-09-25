@@ -3,7 +3,7 @@ var ROWS = 5;
 var emojiSrc = "iOS";
 var spammable = false;
 
-activeTags = [];
+activeTags = [1];
 colBreaks = [204,351,418,475,590,768,EMOJIS];
 
 var ios_score = 0;
@@ -11,7 +11,7 @@ var msg_score = 0;
 var sams_score = 0;
 
 $(document).ready(function(){
-	makePost(1,"2016-08-29",0,2,1,2,"");
+	/** makePost(1,"2016-08-29",0,2,1,2,"");
 	makePost(462,"2016-08-30",2,1,0,1,"");
 	makePost(8,"2016-08-31",1,2,0,2,"");
 	makePost(70,"2016-09-01",2,0,1,2,"");
@@ -23,7 +23,7 @@ $(document).ready(function(){
 	makePost(184,"2016-09-07",2,0,1,1,"");
 	makePost(182,"2016-09-08",0,2,1,1,"");
 	makePost(492,"2016-09-09",0,1,2,1,"");
-	makePost(1004,"2016-09-10",1,0,2,3,"");
+	makePost(1004,"2016-09-10",1,0,2,3,""); */
 
 	makeScoreMessage();
 
@@ -236,13 +236,26 @@ function makeFeedMessage(tag, dateStr){
 }
 
 function makeScoreMessage(){
-	var messageStr = "<p>Emojis: " + activeTags.length + "</p>";
+	var num_of_emojis = 0;
 
+	$.ajax({
+    	url:"Posts/output.txt",
+    	success: function (data){
+    		facts = data.split('\n');
+    		num_of_emojis = parseInt(facts[1]);
+    		ios_score = parseInt(facts[2]);
+    		msg_score = parseInt(facts[3]);
+    		sams_score = parseInt(facts[4]);
+    		console.log(num_of_emojis.toString() + " " + ios_score.toString());
+    	}
+    });
+
+	var numStr = "Emojis: " + num_of_emojis.toString();
 	var iosStr = "iOS: " + ios_score.toString();
 	var msgStr = "Messenger: " + msg_score.toString();
 	var samsStr = "Samsung: " + sams_score.toString();
 
-	messageStr += "<p>" + iosStr + "&nbsp&nbsp&nbsp" + msgStr + "&nbsp&nbsp&nbsp" + samsStr + "</p>"
+	var messageStr = "<p>" + numStr + "</p><p>" + iosStr + "&nbsp&nbsp&nbsp" + msgStr + "&nbsp&nbsp&nbsp" + samsStr + "</p>";
 	$("#score").append(messageStr);
 }
 
