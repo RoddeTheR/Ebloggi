@@ -242,11 +242,10 @@ function makeScoreMessage(){
     	url:"Posts/output.txt",
     	success: function (data){
     		facts = data.split('\n');
-    		num_of_emojis = parseInt(facts[1]);
-    		ios_score = parseInt(facts[2]);
-    		msg_score = parseInt(facts[3]);
-    		sams_score = parseInt(facts[4]);
-    		console.log(num_of_emojis.toString() + " " + ios_score.toString());
+    		num_of_emojis = parseInt(facts[0]);
+    		ios_score = parseInt(facts[1]);
+    		msg_score = parseInt(facts[2]);
+    		sams_score = parseInt(facts[3]);
     	}
     });
 
