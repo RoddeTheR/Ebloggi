@@ -3,7 +3,7 @@ var ROWS = 5;
 var emojiSrc = "iOS";
 var spammable = false;
 
-activeTags = [1];
+activeTags = [];
 colBreaks = [204,351,418,475,590,768,EMOJIS];
 
 var ios_score = 0;
@@ -13,6 +13,7 @@ var sams_score = 0;
 $(document).ready(function(){
 	readScoreFile();
 	makeScoreMessage();
+	// makeFeed();
 
 	var headerHeight = document.getElementById("header").scrollHeight;
 	$("#header").scrollTop(headerHeight);
@@ -50,13 +51,17 @@ function readScoreFile(){
     	url:"Posts/output.txt",
     	success: function (data){
     		facts = data.split('\n');
-    		activeTags = facts[0].split(',');
+    		activeTags = facts[0].slice(0, -1).split(',');
     		ios_score = parseInt(facts[1]);
     		msg_score = parseInt(facts[2]);
     		sams_score = parseInt(facts[3]);
        	}
     });
 }
+
+
+
+
 
 function createEmojiTable(){
 	// Create rows
@@ -102,6 +107,81 @@ function isActive(tag){
 	i = $.inArray(tag, activeTags);
 	return (i >= 0);
 };
+
+
+
+
+
+function makeFeedMessage(tag, dateStr){
+	var messageStr = "<div class='post'><p>" + dateStr + "</p><div class='sentMessage'>";
+
+	var randomNum = random(1,10);
+	for (i=0; i<randomNum; i++){
+		messageStr += "<img src='Images/" + emojiSrc + "/" + tag.toString() + ".png'>"
+	}
+	messageStr += "</div></div>";
+
+	$("#feed").append(messageStr);
+}
+
+ function makeScoreMessage(){
+ 	var messageStr = "<p>Emojis: " + activeTags.length + "</p>";
+ 
+ 	var iosStr = "iOS: " + ios_score.toString();
+ 	var msgStr = "Messenger: " + msg_score.toString();
+ 	var samsStr = "Samsung: " + sams_score.toString();
+ 
+ 	messageStr += "<p>" + iosStr + "&nbsp&nbsp&nbsp" + msgStr + "&nbsp&nbsp&nbsp" + samsStr + "</p>"
+  	$("#score").append(messageStr);
+}
+
+
+
+
+
+function openPost(tag){
+	setTxt(tag);
+
+	var headerStr = "<img src='Images/iOS/"+tag+".png'/>" +
+					"<img src='Images/Messenger/"+tag+".png'/>" +
+					"<img src='Images/Blahsung/"+tag+".png'/>";
+
+	$("#postHeader").append(headerStr);
+
+	var pageH = $(window).height();
+	var pageW = $(window).width();
+	if (pageW < pageH) {
+		$("#postHeader").css({"display":"block","width":"90%","height":"40%","float":"top"});
+		$("#postHeader img").css({"height":"auto","width":"32%"});
+		$("#postContent").css({"width":"90%","height":"40%","float":"bottom"});
+	} else {
+		$("#postHeader").css({"display":"inline","width":"40%","height":"90%","float":"left"});
+		$("#postHeader img").css({"height":"32%","width":"auto"});
+		$("#postContent").css({"width":"40%","height":"90%","float":"right"});
+	}
+
+	$("#post").css("visibility","visible");
+}
+
+function setTxt(postN){
+	$("#date").replaceWith("<p id=\"date\">  </p>");
+	$("#description").replaceWith("<p id=\"description\"> </p>");
+	$("#weight").replaceWith("<p id=\"weight\"> </p>");
+  $.ajax({
+    url:"Posts/"+ postN + ".txt",
+    success: function (data){
+    	facts = data.split('\n');
+    	$("#date").replaceWith("<p id=\"date\">" + facts[1]+ "</p>");
+		$("#description").replaceWith("<p id=\"description\">" + facts[6] + "</p>");
+		$("#weight").replaceWith("<p id=\"weight\">" + "Vikt: " +facts[2]+ "</p>");
+		//$("#score").replaceWith(sscore);
+    }
+  });
+}
+
+
+
+
 
 function getAnswer(){
 	var inputField = document.getElementById("userInput")
@@ -189,81 +269,4 @@ function updateEmojiSrc(src){
 		var str = "Images/" + src + $(this).attr("src").match(/\/\d+\.png$/)
 		$(this).attr("src",str);
 	})
-}
-
-
-function makePost(tag, dateStr, iosScore, msgScore, samsScore, weight, text){
-	activeTags.push(tag);
-	ios_score += iosScore * weight;
-	msg_score += msgScore * weight;
-	sams_score += samsScore * weight;
-
-	makeFeedMessage(tag, dateStr);
-}
-
-function makeFeedMessage(tag, dateStr){
-	var messageStr = "<div class='post'><p>" + dateStr + "</p><div class='sentMessage'>";
-
-	var randomNum = random(1,10);
-	for (i=0; i<randomNum; i++){
-		messageStr += "<img src='Images/" + emojiSrc + "/" + tag.toString() + ".png'>"
-	}
-	messageStr += "</div></div>";
-
-	$("#feed").append(messageStr);
-}
-
- function makeScoreMessage(){
- 	var messageStr = "<p>Emojis: " + activeTags.length + "</p>";
- 
- 	var iosStr = "iOS: " + ios_score.toString();
- 	var msgStr = "Messenger: " + msg_score.toString();
- 	var samsStr = "Samsung: " + sams_score.toString();
- 
- 	messageStr += "<p>" + iosStr + "&nbsp&nbsp&nbsp" + msgStr + "&nbsp&nbsp&nbsp" + samsStr + "</p>"
-  	$("#score").append(messageStr);
-}
-
-
-
-
-
-function openPost(tag){
-	setTxt(tag);
-
-	var headerStr = "<img src='Images/iOS/"+tag+".png'/>" +
-					"<img src='Images/Messenger/"+tag+".png'/>" +
-					"<img src='Images/Blahsung/"+tag+".png'/>";
-
-	$("#postHeader").append(headerStr);
-
-	var pageH = $(window).height();
-	var pageW = $(window).width();
-	if (pageW < pageH) {
-		$("#postHeader").css({"display":"block","width":"90%","height":"40%","float":"top"});
-		$("#postHeader img").css({"height":"auto","width":"32%"});
-		$("#postContent").css({"width":"90%","height":"40%","float":"bottom"});
-	} else {
-		$("#postHeader").css({"display":"inline","width":"40%","height":"90%","float":"left"});
-		$("#postHeader img").css({"height":"32%","width":"auto"});
-		$("#postContent").css({"width":"40%","height":"90%","float":"right"});
-	}
-
-	$("#post").css("visibility","visible");
-}
-
-function setTxt(postN){
-	$("#date").replaceWith("<p id=\"date\">  </p>");
-	$("#description").replaceWith("<p id=\"description\"> </p>");
-	$("#weight").replaceWith("<p id=\"weight\"> </p>");
-  $.ajax({
-    url:"Posts/"+ postN + ".txt",
-    success: function (data){
-    	facts = data.split('\n');
-    	$("#date").replaceWith("<p id=\"date\">" + facts[1]+ "</p>");
-		$("#description").replaceWith("<p id=\"description\">" + facts[6] + "</p>");
-		$("#weight").replaceWith("<p id=\"weight\">" + "Vikt: " +facts[2]+ "</p>");
-		//$("#score").replaceWith(sscore);
-    }
-  });
 }

@@ -1,6 +1,5 @@
 import sys
 import os
-import re
 
 
 dirs = os.listdir("./")
@@ -30,7 +29,7 @@ for fil in dirs:
 			else :
 				samsc = samsc + int(t[2])
 
-			activeTags += re.search('\d+', fil).group(0) + ","
+			activeTags += t[0] + ","
 
 result = activeTags + "\n" + str(iOSsc) + "\n" + str(samsc)+ "\n" + str(messc) + "\n"
 print(result)
