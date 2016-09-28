@@ -5,6 +5,7 @@ var spammable = false;
 
 activeTags = [];
 colBreaks = [204,351,418,475,590,768,EMOJIS];
+var posts = new Array(EMOJIS);
 
 var ios_score = 0;
 var msg_score = 0;
@@ -15,14 +16,11 @@ $(document).ready(function(){
 	readScoreFile();
 
 	$("#closePost").click(function(){
-		$("#post").css("visibility","hidden");
-		$("#tempDiv").remove();
+		closePost();
 	});
 
 	$("#post").click(function(){
-		$("#post").css("visibility","hidden");
-		$("#postHeader").empty();
-		$("#tempDiv").remove();
+		closePost();
 	})
 
 	$("#postwindow").click(function(){
@@ -30,6 +28,15 @@ $(document).ready(function(){
 	})
 });
 
+function closePost(){	
+	$("#post").css("visibility","hidden");
+	$("#postHeader").empty();
+	$("#date").empty();
+	$("#description").empty();
+	$("#weight").empty();
+	$("#sscore").empty();
+	$("#tempDiv").remove();
+}
 
 
 function readScoreFile(){
@@ -42,9 +49,38 @@ function readScoreFile(){
     		msg_score = parseInt(facts[3]);
     		sams_score = parseInt(facts[2]);
 
+    		makePostObject();
     		initPage();
        	}
     });
+}
+
+function makePostObject(){
+	for (var i = 0; i < activeTags.length; i++) {
+    	  $.ajax({
+
+    		url:"Posts/"+ activeTags[i] + ".txt",
+    		success: function (raaa){
+    			facts = raaa.split('\n');
+    			var p = {
+    				number : facts[0],
+    				date   : facts[1],
+    				weight : facts[2],
+    				aScore : facts[3],
+    				mScore : facts[4],
+    				sScore : facts[5],
+    				desc   : facts[6]
+    			};
+     			console.log(p)
+     			console.log(p.number)
+
+    			posts[p.number] = p;
+    			//console.log(posts[1].date)
+    		}
+		  });
+	}
+
+
 }
 
 function initPage(){
@@ -166,20 +202,13 @@ function openPost(tag){
 	$("#post").css("visibility","visible");
 }
 
-function setTxt(postN){
-	$("#date").replaceWith("<p id=\"date\">  </p>");
-	$("#description").replaceWith("<p id=\"description\"> </p>");
-	$("#weight").replaceWith("<p id=\"weight\"> </p>");
-  $.ajax({
-    url:"Posts/"+ postN + ".txt",
-    success: function (data){
-    	facts = data.split('\n');
-    	$("#date").replaceWith("<p id=\"date\">" + facts[1]+ "</p>");
-		$("#description").replaceWith("<p id=\"description\">" + facts[6] + "</p>");
-		$("#weight").replaceWith("<p id=\"weight\">" + "Vikt: " +facts[2]+ "</p>");
-		//$("#score").replaceWith(sscore);
-    }
-  });
+function setTxt(m){
+	var n = posts[m]
+   	sscore = "iOS: " + n.aScore +  "&nbsp&nbsp&nbsp Messenger: "+ n.mScore + "&nbsp&nbsp&nbsp Samsung: " + n.sScore;
+    $("#date").replaceWith("<p id=\"date\">" + n.date+ "</p>");
+	$("#description").replaceWith("<p id=\"description\">" + n.desc + "</p>");
+	$("#weight").replaceWith("<p id=\"weight\">" + "Vikt: " +n.weight+ "</p>");
+	$("#sscore").replaceWith("<p id=\"sscore\">"+ sscore + "</p>");
 }
 
 
