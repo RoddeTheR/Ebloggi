@@ -30,6 +30,7 @@ body{
 	padding:0.6vh 1.2vh;
 	margin-right:1vw;
 	margin-bottom:0.5vh;
+	cursor:pointer;
 }
 
 #feed .sentMessage img {
@@ -138,7 +139,6 @@ body{
 	z-index:100;
 	width:14vh;
 	height:12vh;
-	/*margin:-6vh 5vh 1.5vh -6.9vh;*/
 	top:0;
 	left:0;
 }

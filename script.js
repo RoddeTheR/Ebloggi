@@ -87,6 +87,11 @@ function initPage(){
 		var tag = this.id.substring(5);
 		openPost(tag);
 	});
+
+	$(".sentMessage").click(function(){
+		var tag = this.id.substring(7);
+		openPost(tag);
+	});
 }
 
 
@@ -154,7 +159,7 @@ function makeFeed(){
 }
 
 function makeFeedMessage(oo){
-	var messageStr = "<div class='post'><p>" + oo.date + "</p><div class='sentMessage'>";
+	var messageStr = "<div class='post'><p>" + oo.date + "</p><div class='sentMessage' id='message"+ oo.number + "'>";
 
 	var randomNum = random(1,10);
 	for (i=0; i<randomNum; i++){
