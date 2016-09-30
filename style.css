@@ -126,10 +126,12 @@ body{
 	background-position: center;
 }
 
+/*
 #emojiTable .inactive {
 	-webkit-filter: grayscale(100%);
 	filter: grayscale(100%);
 }
+*/
 
 #emojiTable .overlay{
 	position:absolute;

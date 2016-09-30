@@ -127,7 +127,11 @@ function createEmojiTable(){
 function createEmojiImages(){
 	for(i=1; i<=EMOJIS; i++){
 		var id = "#emoji" + i.toString();
-		$(id).css("background-image","url('Images/" + emojiSrc + "/" + i.toString() + ".png')");
+		if($.inArray(i, activeTags) == -1){
+			$(id).css("background-image","url('BWImages/" + emojiSrc + "/" + i.toString() + ".png')");
+		}else{
+			$(id).css("background-image","url('Images/" + emojiSrc + "/" + i.toString() + ".png')");
+		}
 	};
 };
 
