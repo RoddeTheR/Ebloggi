@@ -151,7 +151,7 @@ function isActive(tag){
 
 
 function makeFeed(){
-	var temp = posts
+	var temp = posts.slice();
 	temp.sort(function(a, b) { 
     	return new Date(a.date) - new Date(b.date);
 	})
