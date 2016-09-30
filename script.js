@@ -13,7 +13,13 @@ var sams_score = 0;
 
 $(document).ready(function(){
 	$("body").css("visibility","hidden");
+
 	readScoreFile();
+
+	$(document).ajaxStop(function () {
+    	initPage();
+  	});
+
 
 	$("#closePost").click(function(){
 		closePost();
@@ -26,22 +32,8 @@ $(document).ready(function(){
 	$("#postwindow").click(function(){
 		event.stopPropagation();
 	})
-
-	$(document).ajaxStop(function () {
-    	makeFeed();
-  	})
-
 });
 
-function closePost(){	
-	$("#post").css("visibility","hidden");
-	$("#postHeader").empty();
-	$("#date").empty();
-	$("#description").empty();
-	$("#weight").empty();
-	$("#sscore").empty();
-	$("#tempDiv").remove();
-}
 
 
 function readScoreFile(){
@@ -55,7 +47,6 @@ function readScoreFile(){
     		sams_score = parseInt(facts[2]);
 
     		makePostObject();
-    		initPage();
        	}
     });
 }
@@ -63,7 +54,6 @@ function readScoreFile(){
 function makePostObject(){
 	for (var i = 0; i < activeTags.length; i++) {
     	  $.ajax({
-
     		url:"Posts/"+ activeTags[i] + ".txt",
     		success: function (raaa){
     			facts = raaa.split('\n');
@@ -76,17 +66,14 @@ function makePostObject(){
     				sScore : facts[5],
     				desc   : facts[6]
     			};
-
     			posts[p.number] = p;
     		}
-		  });
+		});
 	}
-
-
 }
 
 function initPage(){
-	// makeFeed();
+	makeFeed();
 	makeScoreMessage();
 	var headerHeight = document.getElementById("header").scrollHeight;
 	$("#header").scrollTop(headerHeight);
@@ -150,6 +137,8 @@ function isActive(tag){
 };
 
 
+
+
 function makeFeed(){
 	var temp = posts.slice();
 	temp.sort(function(a, b) { 
@@ -159,7 +148,6 @@ function makeFeed(){
 		makeFeedMessage(temp[i])
 	}
 }
-
 
 function makeFeedMessage(oo){
 	var messageStr = "<div class='post'><p>" + oo.date + "</p><div class='sentMessage'>";
@@ -221,6 +209,16 @@ function setTxt(m){
 	$("#description").replaceWith("<p id=\"description\">" + n.desc + "</p>");
 	$("#weight").replaceWith("<p id=\"weight\">" + "Vikt: " +n.weight+ "</p>");
 	$("#sscore").replaceWith("<p id=\"sscore\">"+ sscore + "</p>");
+}
+
+function closePost(){	
+	$("#post").css("visibility","hidden");
+	$("#postHeader").empty();
+	$("#date").empty();
+	$("#description").empty();
+	$("#weight").empty();
+	$("#sscore").empty();
+	$("#tempDiv").remove();
 }
 
 
