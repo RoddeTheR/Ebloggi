@@ -194,30 +194,51 @@ body{
 	cursor: pointer;
 }
 
-#postHeader{
-    display: block;/*inline*/
-    vertical-align: middle;
-    text-align: center;
-    padding: 5%;
-    width: 90%;/*40%*/
-    height:40%;/*90%*/
-    float:top;/*left*/
 
+
+
+#postStuff{
+	position:relative;/*static;*/
+	top:40vh; /*0*/
+	-ms-transform: translate(0,-50%); /*none*/
+    -webkit-transform: translate(0,-50%); /*none*/
+    transform: translate(0,-50%); /*none*/
+}
+
+#postHeader{
+    float: top; /*left*/
+    height:24vw; /*70vh*/
+    width:72vw;	/*24vw*/
+    margin:5vmin auto;
 }
 #postHeader img {
-  height:auto;/*32%*/
-  width:32%; /*auto*/
-
+  width:22vmin;
+  margin:1vmin; /*1vmin auto*/
+  display:inline-block; /*block*/
 }
 
 #postContent {
-	width: 90%;/*40%*/
-	height:40%;/*90%*/
-	font-size:1.4em;
+	float: bottom; /*right*/
+	width: 72vw; /*48vw*/
+	position:static; /*relative*/
+	top: 0; /*35vh;*/
+	-ms-transform: none; /*translate(0,-50%)*/
+    -webkit-transform: none; /*translate(0,-50%)*/
+    transform: none; /*translate(0,-50%)*/
+	margin: 4vmin;
+	font-size: 2vh;
 	text-align: center;
-	font-family:sans-serif;
-	float:bottom;/*right*/
-	padding:5%;
-	vertical-align: middle;
-	display: inline-block;
+	font-family: sans-serif;
+}
+
+#date {
+	font-size:1.6vh;
+}
+
+#weight {
+	font-size:1.6vh;
+}
+
+#sscore {
+	font-weight: bold;
 }

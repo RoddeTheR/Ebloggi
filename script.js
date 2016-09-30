@@ -71,11 +71,8 @@ function makePostObject(){
     				sScore : facts[5],
     				desc   : facts[6]
     			};
-     			console.log(p)
-     			console.log(p.number)
 
     			posts[p.number] = p;
-    			//console.log(posts[1].date)
     		}
 		  });
 	}
@@ -190,13 +187,15 @@ function openPost(tag){
 	var pageH = $(window).height();
 	var pageW = $(window).width();
 	if (pageW < pageH) {
-		$("#postHeader").css({"display":"block","width":"90%","height":"40%","float":"top"});
-		$("#postHeader img").css({"height":"auto","width":"32%"});
-		$("#postContent").css({"width":"90%","height":"40%","float":"bottom"});
+		$("#postHeader").css({"float":"none","width":"72vw","height":"24vw"});
+		$("#postHeader img").css({"display":"inline","margin":"1vmin"});
+		$("#postContent").css({"width":"72vw","float":"none","position":"static","top":"0","-ms-transform":"none","-webkit-transform":"none","transform":"none"});
+		$("#postStuff").css({"position":"relative","top":"40vh","-ms-transform":"translate(0,-50%)","-webkit-transform":"translate(0,-50%)","transform":"translate(0,-50%)"});
 	} else {
-		$("#postHeader").css({"display":"inline","width":"40%","height":"90%","float":"left"});
-		$("#postHeader img").css({"height":"32%","width":"auto"});
-		$("#postContent").css({"width":"40%","height":"90%","float":"right"});
+		$("#postHeader").css({"float":"left","width":"24vw","height":"70vh"});
+		$("#postHeader img").css({"display":"block","margin":"1vmin auto"});
+		$("#postContent").css({"width":"48vw","float":"right","position":"relative","top":"35vh","-ms-transform":"translate(0,-50%)","-webkit-transform":"translate(0,-50%)","transform":"translate(0,-50%)"});
+		$("#postStuff").css({"position":"static","top":"0","-ms-transform":"none","-webkit-transform":"none","transform":"none"});
 	}
 
 	$("#post").css("visibility","visible");
