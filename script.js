@@ -26,6 +26,11 @@ $(document).ready(function(){
 	$("#postwindow").click(function(){
 		event.stopPropagation();
 	})
+
+	$(document).ajaxStop(function () {
+    	makeFeed();
+  	})
+
 });
 
 function closePost(){	
@@ -145,15 +150,23 @@ function isActive(tag){
 };
 
 
+function makeFeed(){
+	var temp = posts
+	temp.sort(function(a, b) { 
+    	return new Date(a.date) - new Date(b.date);
+	})
+	for (var i = 0; i <activeTags.length; i++){
+		makeFeedMessage(temp[i])
+	}
+}
 
 
-
-function makeFeedMessage(tag, dateStr){
-	var messageStr = "<div class='post'><p>" + dateStr + "</p><div class='sentMessage'>";
+function makeFeedMessage(oo){
+	var messageStr = "<div class='post'><p>" + oo.date + "</p><div class='sentMessage'>";
 
 	var randomNum = random(1,10);
 	for (i=0; i<randomNum; i++){
-		messageStr += "<img src='Images/" + emojiSrc + "/" + tag.toString() + ".png'>"
+		messageStr += "<img src='Images/" + emojiSrc + "/" + oo.number.toString() + ".png'>"
 	}
 	messageStr += "</div></div>";
 
@@ -203,7 +216,7 @@ function openPost(tag){
 
 function setTxt(m){
 	var n = posts[m]
-   	sscore = "iOS: " + n.aScore +  "&nbsp&nbsp&nbsp Messenger: "+ n.mScore + "&nbsp&nbsp&nbsp Samsung: " + n.sScore;
+   	sscore = "iOS: " + n.aScore*n.weight  +  "&nbsp&nbsp&nbsp Messenger: "+ n.mScore*n.weight + "&nbsp&nbsp&nbsp Samsung: " + n.sScore*n.weight ;
     $("#date").replaceWith("<p id=\"date\">" + n.date+ "</p>");
 	$("#description").replaceWith("<p id=\"description\">" + n.desc + "</p>");
 	$("#weight").replaceWith("<p id=\"weight\">" + "Vikt: " +n.weight+ "</p>");
