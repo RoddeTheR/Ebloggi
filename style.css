@@ -105,7 +105,7 @@ body{
 
 #menu {
 	width:100vw;
-	height:60vh;
+	height:61vh;
 	bottom:0; 
 	left:0;
 	/* position: fixed; */
@@ -120,8 +120,8 @@ body{
 
 #emojiTable td {
 	height:12vh;
+	width:14vh;
 	background-size:10vh;
-	padding:0 7vh;
 	background-repeat:no-repeat;
 	background-position: center;
 }
@@ -134,11 +134,13 @@ body{
 */
 
 #emojiTable .overlay{
-	position:absolute;
+	position:relative;
 	z-index:100;
 	width:14vh;
 	height:12vh;
-	margin:-6vh 5vh 1.5vh -6.9vh;
+	/*margin:-6vh 5vh 1.5vh -6.9vh;*/
+	top:0;
+	left:0;
 }
 
 #emojiTable .active .overlay:hover{
