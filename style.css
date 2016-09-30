@@ -119,10 +119,11 @@ body{
 }
 
 #emojiTable td {
-	height:9vh;
+	height:12vh;
 	background-size:10vh;
-	padding:1.5vh 7vh;
+	padding:0 7vh;
 	background-repeat:no-repeat;
+	background-position: center;
 }
 
 #emojiTable .inactive {
@@ -133,8 +134,8 @@ body{
 #emojiTable .overlay{
 	position:absolute;
 	z-index:100;
-	width:10vh;
-	height:10vh;
+	width:14vh;
+	height:12vh;
 	margin:-6vh 5vh 1.5vh -6.9vh;
 }
 
