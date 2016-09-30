@@ -12,7 +12,7 @@ body{
 }
 
 
-.post p {
+#feed p {
 	clear:both;
 	width:100vw;
 	text-align:center;
