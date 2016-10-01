@@ -130,7 +130,7 @@ function createEmojiTable(){
 };
 
 function createEmojiImages(){
-	for(i=1; i<=EMOJIS; i++){
+	for(var i = 1; i<=EMOJIS; i++){
 		var id = "#emoji" + i.toString();
 		if(isActive(i)){
 			$(id).css("background-image","url('Images/" + emojiSrc + "/" + i.toString() + ".png')");
